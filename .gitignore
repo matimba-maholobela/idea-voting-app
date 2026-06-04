@@ -1,0 +1,274 @@
+# ========================================
+# Python / Django
+# ========================================
+
+# Byte-compiled / optimized files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual environments 
+*/.venv/
+*/.env/
+*/.env.*
+venv/
+.venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+pythonenv*
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+*.pytest_cache
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+*.sqlite3
+*.db
+*.sqlite3-journal
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+.pybuilder/
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+.python-version
+
+# pipenv
+Pipfile.lock
+
+# poetry
+poetry.lock
+
+# pdm
+.pdm.toml
+
+# PEP 582
+__pypackages__/
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+.env
+.env.local
+.env.*.local
+.env.production
+.env.development
+.env.staging
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+.pytype/
+
+# Pyre type checker
+.pyre/
+
+# ========================================
+# Node / React / JavaScript
+# ========================================
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Dependency directories
+node_modules/
+jspm_packages/
+**/node_modules/
+
+.npm
+.eslintcache
+.node_repl_history
+*.tgz
+.yarn-integrity
+
+.cache
+.parcel-cache
+
+.next
+out
+
+.nuxt
+dist
+
+.cache/
+public
+storybook-static
+
+# umi
+.umi
+.umi-production
+
+# vuepress build output
+.vuepress/dist
+
+# Serverless directories
+.serverless/
+
+# FuseBox cache
+.fusebox/
+
+# DynamoDB Local files
+.dynamodb/
+
+# TernJS port file
+.tern-port
+
+# Vite
+dist
+dist-ssr
+*.local
+
+# ========================================
+# IDE / Editor Files
+# ========================================
+
+# Visual Studio Code
+.vscode/
+*.code-workspace
+.history/
+.vscode/settings.json
+.vscode/extensions.json
+
+# ========================================
+# Application Specific
+# ========================================
+
+# Backend specific
+backend/db.sqlite3
+backend/*.sqlite3
+backend/media/
+backend/staticfiles/
+backend/static/
+backend/logs/
+backend/.env
+backend/.env.local
+!backend/.env.example  # Keep example file
+
+# Frontend specific
+frontend/dist/
+frontend/build/
+frontend/node_modules/
+frontend/.env
+frontend/.env.local
+frontend/.env.development
+frontend/.env.production
+!frontend/.env.example  # Keep example file
+frontend/coverage/
+frontend/.vite/
+
+# VS Code workspace files (if any)
+*.code-workspace
+.vscode/
+
+# Python virtual environment (your pattern)
+.venv/
+venv/
+**/venv/
+**/.venv/
+**/env/
+**/ENV/
+
+# IDE directories
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
