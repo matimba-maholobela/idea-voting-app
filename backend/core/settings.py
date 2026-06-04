@@ -43,6 +43,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+      #idea-voting-apps
+    'idea',
+    'vote',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -68,11 +72,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-
-                #idea-voting-apps
-                'idea',
-                'vote',
-                'rest_framework',
             ],
         },
     },
