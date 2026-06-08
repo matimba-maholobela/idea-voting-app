@@ -1,3 +1,33 @@
+# ========================================
+# Python / Django
+# ========================================
+
+# Byte-compiled / optimized files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
 # Installer logs
 pip-log.txt
 pip-delete-this-directory.txt
@@ -30,10 +60,6 @@ db.sqlite3-journal
 *.sqlite3
 *.db
 
-__pycache__/
-*.pyc
-*.pyo
-
 # Flask stuff:
 instance/
 .webassets-cache
@@ -64,13 +90,24 @@ Pipfile.lock
 # poetry
 poetry.lock
 
+# pdm
+.pdm.toml
+
+# PEP 582
+__pypackages__/
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+
 # SageMath parsed files
 *.sage.py
 
 # Environments
 .env
-.env.local
 .env.*
+!.env.example
+!.env.sample
 .venv
 env/
 venv/
@@ -115,6 +152,7 @@ lerna-debug.log*
 # Dependency directories
 node_modules/
 jspm_packages/
+**/node_modules/
 
 # Optional npm cache directory
 .npm
@@ -141,6 +179,14 @@ jspm_packages/
 # parcel-bundler cache
 .cache
 .parcel-cache
+
+# Next.js build output
+.next
+out
+
+# Nuxt.js build output
+.nuxt
+dist
 
 # Gatsby files
 .cache/
@@ -181,7 +227,76 @@ dist-ssr
 .vscode/
 *.code-workspace
 .history/
+.vscode/settings.json
+.vscode/extensions.json
 
+# IntelliJ / PyCharm / WebStorm
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/dataSources.local.xml
+.idea/dataSources/
+
+# Sublime Text
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
+*.sublime-workspace
+*.sublime-project
+
+# Vim
+*.swp
+*.swo
+*~
+.~*
+.*.swp
+.*.swo
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+.elc
+auto-save-list
+tramp
+.\#*
+
+# ========================================
+# Operating System Files
+# ========================================
+
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*.AppleDouble
+*.LSOverride
+Icon
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+*.dll
+*.exe
+*.exe~
 
 # Linux
 *~
@@ -205,6 +320,8 @@ media/
 uploads/
 staticfiles/
 static/
+**/media/
+**/staticfiles/
 
 # Backup files
 *.backup
@@ -212,6 +329,8 @@ static/
 *.old
 *.orig
 *.tmp
+*.swp
+*.swo
 
 # Secret / sensitive data
 *.pem
@@ -220,6 +339,10 @@ static/
 *.p12
 secrets/
 .credentials/
+*.pem
+*.key
+secrets.json
+.credentials.json
 
 # Docker
 *.log
@@ -227,6 +350,7 @@ secrets/
 *.pid.lock
 docker-compose.override.yml
 .dockerignore
+Dockerfile.dev
 
 # Coverage reports
 .coverage
@@ -244,7 +368,52 @@ htmlcov/
 # Django migrations backup
 */migrations/*.pyc
 */migrations/__pycache__/
+*/migrations/*.pyc
+
+# Celery
+celerybeat-schedule
+celerybeat.pid
 
 # Logs
 *.log
 logs/
+log/
+
+# Debug files
+*.dbg
+*.pdb
+*.dmp
+
+# Build outputs
+dist/
+build/
+*.egg-info/
+**/dist/
+**/build/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+.env.production
+.env.development
+!.env.example
+!.env.sample
+
+# Package manager locks 
+# package-lock.json
+# yarn.lock
+# requirements.txt
+# Pipfile.lock
+
+# Redis
+dump.rdb
+
+# Celery
+celerybeat-schedule
+celerybeat.pid
+
+# Temp files
+*.tmp
+*.temp
+*.bak
