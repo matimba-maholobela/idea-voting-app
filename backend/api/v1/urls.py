@@ -7,9 +7,12 @@ This is the main URL configuration for the API. It includes the URLs for the aut
 
 urlpatterns = [
     
+    #endpoinnts for auth
     path('auth/', include('auth.urls')),
 
-    #the below not yet implemented
-    #path('idea/', include('idea.urls')),
-    # path('vote/', include('vote.urls')),
+    #endpoints for ideas
+    path('ideas/', include('idea.urls')),
+
+    #endpoints for votes
+    path('votes/', include('vote.urls')),
 ]

@@ -5,7 +5,7 @@ from django.core.validators import MinLengthValidator
 from django.utils import timezone
 
 class Idea(models.Model):
-    title = models.CharField( max_length=255, validators=[MinLengthValidator(2)] )
+    title = models.CharField( max_length=255, validators=[MinLengthValidator(2)],unique=True )
 
     description = models.TextField()
 

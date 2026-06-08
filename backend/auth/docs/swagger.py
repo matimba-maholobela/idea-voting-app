@@ -215,5 +215,4 @@ verify_token_response_schema = openapi.Schema(
     }
 )
 
-# Tag for grouping
 AUTH_TAG = 'Authentication'

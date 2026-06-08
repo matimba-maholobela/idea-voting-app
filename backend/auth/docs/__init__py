@@ -1,6 +1,5 @@
 # authentication/docs/__init__.py
 from .swagger import (
-    AUTH_TAG,
     login_request,
     token_refresh_request,
     logout_request,
@@ -10,6 +9,10 @@ from .swagger import (
     token_refresh_response_schema,
     verify_token_response_schema,
 )
+try:
+    from .swagger import AUTH_TAG
+except ImportError:
+    AUTH_TAG = 'Authentication'
 
 from .responses import (
     AuthResponses,
@@ -22,10 +25,8 @@ from .responses import (
 )
 
 __all__ = [
-    # Tags
-    'AUTH_TAG',
-    
     # Request schemas
+    'AUTH_TAG',
     'login_request',
     'token_refresh_request', 
     'logout_request',
