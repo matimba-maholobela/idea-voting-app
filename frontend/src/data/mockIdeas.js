@@ -1,0 +1,48 @@
+// src/data/mockIdeas.js
+export const mockIdeas = [
+  {
+    id: '1',
+    title: 'Dark Mode Dashboard',
+    description: 'Add a dark mode toggle to the dashboard for better night-time usability and reduced eye strain.',
+    vote_count: 42,
+    is_voted_by_user: false,
+    created_by_username: 'alice',
+    created_at: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
+  },
+  {
+    id: '2',
+    title: 'Real-time Notifications',
+    description: 'Implement WebSocket notifications for when someone votes on your idea or when new ideas are posted.',
+    vote_count: 38,
+    is_voted_by_user: true,
+    created_by_username: 'bob',
+    created_at: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(),
+  },
+  {
+    id: '3',
+    title: 'Idea Categories',
+    description: 'Organize ideas into categories like Feature Request, Bug Fix, Improvement, etc. for better organization.',
+    vote_count: 27,
+    is_voted_by_user: false,
+    created_by_username: 'carol',
+    created_at: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString(),
+  },
+  {
+    id: '4',
+    title: 'Export Ideas to CSV',
+    description: 'Allow administrators to export all ideas and votes to CSV format for offline analysis.',
+    vote_count: 15,
+    is_voted_by_user: false,
+    created_by_username: 'david',
+    created_at: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000).toISOString(),
+  },
+  {
+    id: '5',
+    title: 'Comment Threads',
+    description: 'Add nested comment threads under each idea for deeper discussion before voting.',
+    vote_count: 31,
+    is_voted_by_user: true,
+    created_by_username: 'testuser',
+    created_at: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString(),
+  },
+];
