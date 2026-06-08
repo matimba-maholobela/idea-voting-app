@@ -1,0 +1,50 @@
+# authentication/docs/__init__.py
+from .swagger import (
+    AUTH_TAG,
+    login_request,
+    token_refresh_request,
+    logout_request,
+    verify_token_request,
+    login_response_schema,
+    profile_response_schema,
+    token_refresh_response_schema,
+    verify_token_response_schema,
+)
+
+from .responses import (
+    AuthResponses,
+    LOGIN_RESPONSES,
+    TOKEN_REFRESH_RESPONSES,
+    LOGOUT_RESPONSES,
+    PROFILE_RESPONSES,
+    VERIFY_TOKEN_RESPONSES,
+    COMMON_RESPONSES,
+)
+
+__all__ = [
+    # Tags
+    'AUTH_TAG',
+    
+    # Request schemas
+    'login_request',
+    'token_refresh_request', 
+    'logout_request',
+    'verify_token_request',
+    
+    # Response schemas
+    'login_response_schema',
+    'profile_response_schema',
+    'token_refresh_response_schema',
+    'verify_token_response_schema',
+    
+    # Response classes
+    'AuthResponses',
+    
+    # Response dictionaries
+    'LOGIN_RESPONSES',
+    'TOKEN_REFRESH_RESPONSES',
+    'LOGOUT_RESPONSES', 
+    'PROFILE_RESPONSES',
+    'VERIFY_TOKEN_RESPONSES',
+    'COMMON_RESPONSES',
+]

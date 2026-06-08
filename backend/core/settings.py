@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'idea',
     'vote',
     'rest_framework',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [

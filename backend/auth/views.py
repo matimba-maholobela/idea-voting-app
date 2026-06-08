@@ -8,8 +8,47 @@ from rest_framework_simplejwt.tokens import RefreshToken, AccessToken
 from rest_framework_simplejwt.exceptions import TokenError, InvalidToken
 from django.contrib.auth.models import User
 import logging
+from drf_yasg.utils import swagger_auto_schema
 
-logger = logging.getLogger(__name__) 
+logger = logging.getLogger(__name__)
+
+try:
+    from .docs import (
+        AUTH_TAG,
+        login_request,
+        token_refresh_request,
+        logout_request,
+        verify_token_request,
+        LOGIN_RESPONSES,
+        TOKEN_REFRESH_RESPONSES,
+        LOGOUT_RESPONSES,
+        PROFILE_RESPONSES,
+        VERIFY_TOKEN_RESPONSES,
+    )
+except ImportError as e:
+    print(f"Import error: {e}")
+    # Fallback if docs not found
+    AUTH_TAG = 'Authentication'
+    login_request = None
+    token_refresh_request = None
+    logout_request = None
+    verify_token_request = None
+    LOGIN_RESPONSES = {}
+    TOKEN_REFRESH_RESPONSES = {}
+    LOGOUT_RESPONSES = {}
+    PROFILE_RESPONSES = {}
+    VERIFY_TOKEN_RESPONSES = {}
+
+
+@swagger_auto_schema(
+    method='post',
+    request_body=login_request,
+    responses=LOGIN_RESPONSES,  # Using pre-defined dictionary
+    operation_summary="User login",
+    operation_description="Authenticate user and return JWT tokens",
+    tags=[AUTH_TAG]
+)
+
 
 @api_view(['POST'])
 def login_view(request):
