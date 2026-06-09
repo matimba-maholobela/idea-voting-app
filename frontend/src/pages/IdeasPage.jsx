@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { differenceInDays, format, parseISO } from 'date-fns';
 import { Helmet } from 'react-helmet-async';
 import { useAuth } from '../contexts/AuthContext';
 import { useIdeas } from '../hooks/useIdeas';
@@ -82,13 +83,14 @@ const IdeasPage = () => {
   };
 
   const formatDate = (dateString) => {
-    const date = new Date(dateString);
+    const date = parseISO(dateString);
     const now = new Date();
-    const diffDays = Math.floor((now - date) / (1000 * 60 * 60 * 24));
+    const diffDays = differenceInDays(now, date);
+
     if (diffDays === 0) return 'today';
     if (diffDays === 1) return 'yesterday';
     if (diffDays < 7) return `${diffDays} days ago`;
-    return date.toLocaleDateString();
+    return format(date, 'MMM d, yyyy');
   };
 
   if (!authLoading && !isAuthenticated) {
