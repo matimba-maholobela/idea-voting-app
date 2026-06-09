@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from datetime import timedelta
 from pathlib import Path
-from decouple import config
+from decouple import config, Csv
 import os
 from pathlib import Path
 
@@ -35,7 +35,7 @@ DEBUG = config('DEBUG', default=False)
 
 ALLOWED_HOSTS = []
 
-CORS_ALLOWED_ORIGINS = [config('CORS_ALLOWED_ORIGINS')]
+CORS_ALLOWED_ORIGINS = config('CORS_ALLOWED_ORIGINS',cast=Csv())
 
 # Application definition
 
@@ -149,9 +149,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # jwt settings
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),      # Short-lived access token
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),         # Long-lived refresh token
-    'ROTATE_REFRESH_TOKENS': True,                       # Get new refresh token on refresh
-    'BLACKLIST_AFTER_ROTATION': True,                    # Blacklist old refresh tokens
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),         # Long-lived refresh token
+    'ROTATE_REFRESH_TOKENS': True,                      
+    'BLACKLIST_AFTER_ROTATION': True,                    
     'ALGORITHM': 'HS256',
     'SIGNING_KEY': SECRET_KEY,
     'VERIFYING_KEY': None,
