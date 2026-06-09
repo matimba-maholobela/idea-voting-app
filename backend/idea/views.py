@@ -1,4 +1,7 @@
-from rest_framework import viewsets, status
+from drf_yasg import openapi
+from rest_framework import viewsets
+from drf_yasg.utils import swagger_auto_schema
+from drf_yasg import openapi
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
@@ -42,3 +45,31 @@ class IdeaViewSet(viewsets.ModelViewSet):
         
         serializer = self.get_serializer(ideas, many=True)
         return Response(serializer.data)
+    
+
+    @swagger_auto_schema(
+        operation_summary="List ideas",
+        operation_description="Returns a paginated list of ideas, sorted by popularity or recency.",
+        manual_parameters=[
+            openapi.Parameter('sort_by', openapi.IN_QUERY, description="Sort by 'votes' or 'recent'", type=openapi.TYPE_STRING),
+            openapi.Parameter('page', openapi.IN_QUERY, description="Page number", type=openapi.TYPE_INTEGER),
+            openapi.Parameter('page_size', openapi.IN_QUERY, description="Items per page", type=openapi.TYPE_INTEGER),
+        ]
+    )
+    def list(self, request, *args, **kwargs):
+        return super().list(request, *args, **kwargs)
+
+    @swagger_auto_schema(
+        operation_summary="Create an idea",
+        operation_description="Authenticated users can create an idea with title and description.",
+        request_body=openapi.Schema(
+            type=openapi.TYPE_OBJECT,
+            properties={
+                'title': openapi.Schema(type=openapi.TYPE_STRING),
+                'description': openapi.Schema(type=openapi.TYPE_STRING),
+            }
+        ),
+        responses={201: "Idea created", 400: "Bad request"}
+    )
+    def create(self, request, *args, **kwargs):
+        return super().create(request, *args, **kwargs)

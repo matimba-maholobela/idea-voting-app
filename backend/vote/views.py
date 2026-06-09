@@ -1,7 +1,12 @@
+from drf_yasg import openapi
 from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
+from drf_yasg.utils import swagger_auto_schema
+from drf_yasg import openapi
+
+from vote.throttle import VoteRateThrottle
 from .models import Vote
 from .serializers import VoteSerializer, VoteStatsSerializer
 from .services import VoteService
@@ -12,11 +17,26 @@ class VoteViewSet(viewsets.ReadOnlyModelViewSet):
     permission_classes = [IsAuthenticated]
     
     def get_queryset(self):
-        """This method returns the queryset of votes for the current user, including related idea information for efficient access."""
-
+        
+        if getattr(self, 'swagger_fake_view', False):
+            return Vote.objects.none()
         return Vote.objects.filter(user=self.request.user).select_related('idea')
     
-    @action(detail=False, methods=['post'], url_path='cast/(?P<idea_id>[^/.]+)')
+    @swagger_auto_schema(
+        operation_summary="Cast a vote",
+        operation_description="Allows an authenticated user to vote for an idea. One vote per user per idea.",
+        responses={
+            201: openapi.Response('Vote added', openapi.Schema(
+                type=openapi.TYPE_OBJECT,
+                properties={
+                    'message': openapi.Schema(type=openapi.TYPE_STRING),
+                    'vote_count': openapi.Schema(type=openapi.TYPE_INTEGER),
+                }
+            )),
+            400: "Already voted or idea not found"
+        }
+    )
+    @action(detail=False, methods=['post'], url_path='cast/(?P<idea_id>[^/.]+)', throttle_classes=[VoteRateThrottle])
     def cast_vote(self, request, idea_id=None):
         """This method allows a user to cast a vote for an idea. It checks if the user has already voted for the idea and if not,
         it creates a new vote and increments the vote count of the idea."""
@@ -27,7 +47,7 @@ class VoteViewSet(viewsets.ReadOnlyModelViewSet):
             return Response({'message': message, 'vote_count': vote_count}, status=status.HTTP_201_CREATED)
         return Response({'error': message, 'vote_count': vote_count}, status=status.HTTP_400_BAD_REQUEST)
     
-    @action(detail=False, methods=['delete'], url_path='remove/(?P<idea_id>[^/.]+)')
+    @action(detail=False, methods=['delete'], url_path='remove/(?P<idea_id>[^/.]+)', throttle_classes=[VoteRateThrottle])
     def remove_vote(self, request, idea_id=None):
         """This method allows a user to remove their vote for an idea. It checks if the user has voted for the idea and if so,
         it deletes the vote and decrements the vote count of the idea."""
@@ -38,7 +58,7 @@ class VoteViewSet(viewsets.ReadOnlyModelViewSet):
             return Response({'message': message, 'vote_count': vote_count}, status=status.HTTP_200_OK)
         return Response({'error': message, 'vote_count': vote_count}, status=status.HTTP_400_BAD_REQUEST)
     
-    @action(detail=False, methods=['get'], url_path='check/(?P<idea_id>[^/.]+)')
+    @action(detail=False, methods=['get'], url_path='check/(?P<idea_id>[^/.]+)', throttle_classes=[VoteRateThrottle])
     def check_vote(self, request, idea_id=None):
         """This method checks if a user has already voted for a specific idea and returns the vote count of the idea."""
 

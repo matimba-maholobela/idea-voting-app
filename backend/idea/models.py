@@ -1,15 +1,14 @@
 # backend/idea/models.py
 from django.db import models
 from django.contrib.auth.models import User
-from django.core.validators import MinLengthValidator
-from django.utils import timezone
+from django.core.validators import MinLengthValidator, MinValueValidator
 
 class Idea(models.Model):
     title = models.CharField( max_length=255, validators=[MinLengthValidator(2)],unique=True )
 
     description = models.TextField()
 
-    vote_count = models.IntegerField( default=0,db_index=True)
+    vote_count = models.IntegerField( default=0,db_index=True,validators=[MinValueValidator(0)] )
 
     created_by = models.ForeignKey(User,on_delete=models.CASCADE,related_name='ideas_created')
 
