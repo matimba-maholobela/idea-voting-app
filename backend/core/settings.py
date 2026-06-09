@@ -12,9 +12,11 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from datetime import timedelta
 from pathlib import Path
-from decouple import config
+from decouple import config, Csv
 import os
 from pathlib import Path
+
+import rest_framework
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -33,7 +35,7 @@ DEBUG = config('DEBUG', default=False)
 
 ALLOWED_HOSTS = []
 
-CORS_ALLOWED_ORIGINS = [config('CORS_ALLOWED_ORIGINS')]
+CORS_ALLOWED_ORIGINS = config('CORS_ALLOWED_ORIGINS',cast=Csv())
 
 # Application definition
 
@@ -117,6 +119,19 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
+
+     'DEFAULT_THROTTLE_CLASSES': [
+        'rest_framework.throttling.AnonRateThrottle',
+        'rest_framework.throttling.UserRateThrottle',
+    ],
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '100/day',       
+        'user': '1000/day',       
+        'vote': '60/minute',      
+    },
+
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
     
 }
 
@@ -125,7 +140,7 @@ REST_FRAMEWORK = {
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Johannesburg'
 
 USE_I18N = True
 
@@ -145,9 +160,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # jwt settings
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),      # Short-lived access token
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),         # Long-lived refresh token
-    'ROTATE_REFRESH_TOKENS': True,                       # Get new refresh token on refresh
-    'BLACKLIST_AFTER_ROTATION': True,                    # Blacklist old refresh tokens
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),         # Long-lived refresh token
+    'ROTATE_REFRESH_TOKENS': True,                      
+    'BLACKLIST_AFTER_ROTATION': True,                    
     'ALGORITHM': 'HS256',
     'SIGNING_KEY': SECRET_KEY,
     'VERIFYING_KEY': None,
