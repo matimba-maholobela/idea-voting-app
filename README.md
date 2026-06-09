@@ -2,6 +2,7 @@
 
 A full-stack web application for crowdsourcing ideas with voting functionality. Built with **Django REST Framework** (backend) and **React + Tailwind CSS** (frontend).
 
+Demo Video: https://share.vidyard.com/watch/S45XCssjoSbyeu4nojNYKC
 ---
 
 ## Features
