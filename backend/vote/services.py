@@ -20,7 +20,6 @@ class VoteService:
         
         try:
             Vote.objects.create(user=user, idea=idea)
-            Idea.objects.filter(id=idea.id).update(vote_count=F('vote_count') + 1)
             idea.refresh_from_db()
             return True, "Vote added successfully", idea.vote_count
         except IntegrityError:
@@ -60,7 +59,7 @@ class VoteService:
     @staticmethod
     def get_vote_stats():
         """This method retrieves statistics about the votes, including total votes, unique voters, and the most voted idea."""
-        
+
         total_votes = Vote.objects.count()
         unique_voters = Vote.objects.values('user').distinct().count()
         most_voted = Idea.objects.order_by('-vote_count').first()
